@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 import uvicorn
 
 app = FastAPI()
@@ -11,6 +11,13 @@ def index():
 @app.get("/sample/{age}")
 def findage(age: int):
     return("This is your Given Age, Age::{age}")
+
+@app.get("/find/{:id}")
+class User(BaseModel):
+    name : str
+    age : int
+    email : EmailStr
+    Password : str
 
 
 if __name__ == "__main__":
